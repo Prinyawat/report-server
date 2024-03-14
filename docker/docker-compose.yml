@@ -1,0 +1,60 @@
+version: "3"
+# Sinec 20200402
+services:
+  proxy:
+    image: traefik:2.10-windowsservercore-1809
+    command: --api.insecure=true --providers.docker --providers.docker.endpoint=npipe:////./pipe/docker_engine
+    volumes:
+      - type: npipe
+        source: '\\.\pipe\docker_engine\'
+        target: '\\.\pipe\docker_engine\'
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+  reportsvr:
+    image: "registry.gitlab.com/softsquare_ssru/registry/reportsvr_cb_win:20230926"
+    environment:
+      TZ: "/usr/share/zoneinfo/Asia/Bangkok"
+      JAVA_TOOL_OPTIONS: "${JAVA_TOOL_OPTIONS} -Xms256m -Xmx512m -XX:+UseG1GC"
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_APPLICATION_JSON:
+        '{
+        "server.servlet.contextPath":"/",
+        "management.server.port": "8080",
+        "logging.file":"c:/logs/reportsvr.log",
+        "logging.level.com.root":"info",
+        "logging.level.com.softsquare":"debug",
+        "logging.level.com.nimbusds":"debug",
+        "logging.level.org.springframework.security.oauth2":"debug",
+        "spring.security.oauth2.resourceserver.jwt.issuer-uri": "https://idp-dev.ssru.softsquaregroup.app/.well-known/openid-configuration",
+        "spring.security.oauth2.resourceserver.jwt.jwk-set-uri": "https://idp-dev.ssru.softsquaregroup.app/.well-known/openid-configuration/jwks"
+        }'
+        # {"server.servlet.contextPath":"/",
+        #  "logging.file":"c:/logs/reportsvr.log",
+        #  "logging.level.com.root":"warn",
+        #  "logging.level.com.nimbusds":"debug",
+        #  "logging.level.org.springframework.security.oauth2":"debug",
+        #  "spring.datasource.url":"jdbc:postgresql://172.16.0.191:5201/ssru?sslmode=require&ApplicationName=reportsvr",
+        #  "spring.datasource.username":"smuapp",
+        #  "spring.datasource.password":"blu3Jump83",
+        #  "spring.security.oauth2.resourceserver.jwt.issuer-uri":"https://idt.softsquare.ga/.well-known/openid-configuration",
+        #  "spring.security.oauth2.resourceserver.jwt.jwk-set-uri":"https://idt.softsquare.ga/.well-known/openid-configuration/jwks"
+        #  }'
+      # VIRTUAL_HOST: "reportsvr.softsquare.ga"
+      # VIRTUAL_PORT: 8080
+      # HTTPS_METHOD: "noredirect"
+    # volumes:
+    # - logs:c:/logs
+    # - ./report-svr/jrxml:/reports
+    # - ./report-svr/pictures:/pictures
+    ports:
+      - 8000:8080
+      - 8081:8081
+      # - "traefik.tcp.routers.proxy.tls=false"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.reportsvr.rule=Host(`rpt-192-168-1-154.xip.softsquaregroup.app`)"
+      - "traefik.http.services.reportsvr.loadbalancer.server.port=8080"
+# volumes:
+  # logs:

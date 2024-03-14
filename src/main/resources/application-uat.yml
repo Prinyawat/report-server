@@ -1,0 +1,55 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /
+management:
+  server.port: 8081
+  endpoints:
+    health.show-details: 'always'
+    web.exposure.include: 'prometheus,auditevents,loggers,logfile,info,env,health,metrics,caches'
+spring:
+  profiles:
+    active: default
+  cache:
+    type: ehcache
+    jcache:
+      config: classpath:ehcache.xml
+      provider: org.ehcache.jsr107.EhcacheCachingProvider
+  #     redis:
+  #         time-to-live: 60000
+  # redis:
+  #     host: 172.16.0.190
+  #     port: 6379
+  #     password: ssru^redis
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://172.16.0.191:5434/ssru?sslmode=require&ApplicationName=report&currentSchema=smudev
+    username: smuapp
+    password: blu3Jump83
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+  second-db:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://172.16.0.191:5434/ssru?sslmode=require&ApplicationName=report&currentSchema=smudev
+    username: smuapp
+    password: blu3Jump83
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # jwk-set-uri: http://localhost:8081/auth/.well-known/jwks.json
+          # issuer-uri: http://localhost:8081/auth
+          jwk-set-uri: https://idt.softsquare.ga/.well-known/openid-configuration/jwks
+          issuer-uri: https://idt.softsquare.ga/
+
+# Jasper Report properties
+com:
+  softsquare:
+    ssru:
+      report-location: classpath:reports
+      storage-location: classpath:reports

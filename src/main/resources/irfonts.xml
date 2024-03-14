@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+    <fontFamily name="TH Sarabun New">
+        <normal><![CDATA[fonts/THSarabunNew.ttf]]></normal>
+        <bold><![CDATA[fonts/THSarabunNew Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/THSarabunNew Italic.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/THSarabunNew BoldItalic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+    <fontFamily name="Laksaman">
+        <normal><![CDATA[fonts/Laksaman.ttf]]></normal>
+        <bold><![CDATA[fonts/Laksaman-Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/Laksaman-Italic.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/Laksaman-BoldItalic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+    <fontFamily name="TH SarabunPSK">
+        <normal><![CDATA[fonts/THSarabun.ttf]]></normal>
+        <bold><![CDATA[fonts/THSarabun Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/THSarabun Italic.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/THSarabun Bold Italic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+    <fontFamily name="WINGDNG2">
+        <normal><![CDATA[fonts/WINGDNG2.ttf]]></normal>
+        <bold><![CDATA[fonts/WINGDNG2.ttf]]></bold>
+        <italic><![CDATA[fonts/WINGDNG2.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/WINGDNG2.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Angsana New">
+        <normal><![CDATA[fonts/AngsanaNew.ttf]]></normal>
+        <bold><![CDATA[fonts/AngsanaNewBold.ttf]]></bold>
+        <italic><![CDATA[fonts/AngsanaNewItalic.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/AngsanaNewBoldItalic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Prompt">
+        <normal><![CDATA[fonts/Prompt-Regular.ttf]]></normal>
+        <bold><![CDATA[fonts/Prompt-Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/Prompt-Italic.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/Prompt-BoldItalic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="JS Chulee">
+        <normal><![CDATA[fonts/JS Chulee.ttf]]></normal>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="DB Helvethaica X Reg">
+        <normal><![CDATA[fonts/DB HELVETHAICA X.TTF]]></normal>
+        <bold><![CDATA[fonts/DB HELVETHAICA X BLK.TTF]]></bold>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="CRU-rajabhat">
+        <normal><![CDATA[fonts/CRU-rajabhat.ttf]]></normal>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Angsima">
+        <normal><![CDATA[fonts/Angsima.ttf]]></normal>
+	<bold><![CDATA[fonts/Angsima-Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/Angsima-Oblique.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/Angsima-BoldOblique.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="AngsanaUPC">
+        <normal><![CDATA[fonts/AngsanaUPC.ttf]]></normal>
+	<bold><![CDATA[fonts/AngsanaUPC-Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/AngsanaUPC-Bold.ttf]]></italic>
+        <boldItalic><![CDATA[fonts/AngsanaUPC-BoldItalic.ttf]]></boldItalic>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+</fontFamilies>

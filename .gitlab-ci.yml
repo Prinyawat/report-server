@@ -1,0 +1,85 @@
+# image: docker:19.03.8
+
+variables:
+  PROJECT_REGISTRY: "registry.gitlab.com/softsquare_ssru/registry"
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_DRIVER: overlay2
+  # DOCKER_TLS_CERTDIR: ""
+
+# services:
+#   - docker:19.03.8-dind
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - echo -n $SSRU_BUILDER_TOKEN | docker login -u gitlab+deploy-token-163541 --password-stdin $CI_REGISTRY
+  # - docker info
+
+.template:
+  stage: build
+  environment: 
+    name: test
+  allow_failure: false
+  variables:
+    IMAGE_NAME: "reportsvr"
+  script:
+    - docker pull ${PROJECT_REGISTRY}/${IMAGE_NAME}:latest || true
+    - docker build --rm -f "docker/Dockerfile" -t ${PROJECT_REGISTRY}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} -t ${PROJECT_REGISTRY}/${IMAGE_NAME}:latest .
+    - docker push ${PROJECT_REGISTRY}/${IMAGE_NAME}
+  tags:
+    - linux
+    - smartu 
+
+.template-uat:
+  stage: build
+  environment: 
+    name: uat  
+  allow_failure: false
+  variables:
+    IMAGE_NAME: "reportsvr/win"
+  script:
+    - docker pull ${PROJECT_REGISTRY}/${IMAGE_NAME}:latest
+    - docker build --rm -f "docker/win.Dockerfile" -t ${PROJECT_REGISTRY}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} -t ${PROJECT_REGISTRY}/${IMAGE_NAME}:latest .
+    - docker push ${PROJECT_REGISTRY}/${IMAGE_NAME}
+  tags:
+    - window
+    - smartu
+    - docker
+
+build-api-manual:
+  extends: .template
+  only:
+    refs:
+      - develop
+  except:
+    - schedules
+  when: manual
+
+build-uat-api-manual:
+  extends: .template-uat
+  only:
+    refs:
+      - develop
+  except:
+    - schedules
+  when: manual
+
+build-prod-api-manual:
+  extends: .template-uat
+  only:
+    refs:
+      - master
+  except:
+    - schedules
+  when: manual
+
+build-api-schedule:
+  extends: .template
+  only:
+    refs:
+      - develop
+      - schedules
+    variables:
+      - $NIGHTLY == "true"

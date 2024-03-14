@@ -1,0 +1,49 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /
+management:
+  server.port: 8081
+  endpoints:
+    health.show-details: "always"
+    web.exposure.include: "prometheus,auditevents,loggers,logfile,info,env,health,metrics,caches"
+spring:
+  profiles:
+    active: default
+  cache:
+    type: ehcache
+    jcache:
+      config: classpath:ehcache.xml
+      provider: org.ehcache.jsr107.EhcacheCachingProvider 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    # url: jdbc:postgresql://p5db-local.exaler.co.th:54325/sps-dev?ApplicationName=report&currentSchema=public #<<<<<<<<<
+    url: jdbc:postgresql://172.16.0.240:9977/pe-sps-dev?currentSchema=project&ApplicationName=report
+    username: crms
+    password: crms
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+  second-db:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://172.16.0.240:9977/pe-sps-dev?currentSchema=project&ApplicationName=report
+    username: crms
+    password: crms
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # jwk-set-uri: http://localhost:9002/.well-known/jwks.json
+          # issuer-uri: http://localhost:9002
+          jwk-set-uri: http://localhost:9002/.well-known/openid-configuration/jwks  #<<<<<<<<<
+          issuer-uri: http://localhost:9002                                          #<<<<<<<<<
+
+# Jasper Report properties
+com:
+  softsquare:
+    report:
+      report-location: classpath:reports
+      storage-location: classpath:reports
